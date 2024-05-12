@@ -1,5 +1,5 @@
 {
-  "productName": "cogito-tech",
+  "productName": "CogitoFun",
   "version": "0.1.0",
   "identifier": "cogito.fujia.site",
   "build": {
@@ -11,9 +11,10 @@
   "app": {
     "windows": [
       {
-        "title": "cogito-tech",
-        "width": 800,
-        "height": 600
+        "title": "Cogito Fun",
+        "width": 1024,
+        "height": 768,
+        "visible": true
       }
     ],
     "security": {
@@ -23,9 +24,6 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "externalBin": [
-      "binaries/node"
-    ],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

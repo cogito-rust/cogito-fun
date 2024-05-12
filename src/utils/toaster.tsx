@@ -8,7 +8,7 @@ export const errorToast = (msg: string, opts?: ToastOptions) =>
 export const successToast = (msg: string, opts?: ToastOptions) =>
   toast.success(msg, opts);
 
-export const customToast = (msg: string, opts?: ToastOptions) =>
+export const customToast = (msg: string) =>
   toast.custom((t) => (
     <div
       className={`${
@@ -26,9 +26,7 @@ export const customToast = (msg: string, opts?: ToastOptions) =>
           </div>
           <div className="ml-3 flex-1">
             <p className="text-sm font-medium text-gray-900">Emilia Gates</p>
-            <p className="mt-1 text-sm text-gray-500">
-              Sure! 8:30pm works great!
-            </p>
+            <p className="mt-1 text-sm text-gray-500">{msg}</p>
           </div>
         </div>
       </div>

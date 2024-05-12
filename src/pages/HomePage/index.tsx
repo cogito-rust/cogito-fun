@@ -5,71 +5,85 @@ import { Link, useNavigate } from '@tanstack/react-router';
 const countAtom = atom(0);
 
 export const HomePage = () => {
-  const navigate = useNavigate();
-  navigate;
+  // const navigate = useNavigate();
 
   const appList = [
     {
-      title: 'AI',
-      img: 'https://nextui.org/images/hero-card.jpeg',
-      desc: '智能助手',
+      title: 'AI中心',
+      img: 'https://nextui.org/images/fruit-1.jpeg',
+      desc: '智能与创造',
       link: '/ai',
     },
     {
       title: '编辑器',
       img: 'https://nextui.org/images/fruit-3.jpeg',
-      desc: 'WEB编辑',
+      desc: '编码与专注',
       link: '/editor',
     },
     {
-      title: '数据源管理',
+      title: '数据源',
       img: 'https://nextui.org/images/fruit-3.jpeg',
-      desc: '数据编辑与处理',
+      desc: '定义与连接',
       link: '/datasource',
     },
     {
       title: '配置中心',
       img: 'https://nextui.org/images/fruit-3.jpeg',
-      desc: '个人/应用/系统信息',
+      desc: '构建与管理',
       link: '/settings',
     },
     {
       title: '数据中心',
       img: 'https://nextui.org/images/fruit-3.jpeg',
-      desc: '数据管理',
+      desc: '编排与处理',
       link: '/data-center',
+    },
+    {
+      title: 'Sandpack',
+      img: 'https://nextui.org/images/fruit-3.jpeg',
+      desc: '实践与预览',
+      link: '/sandpack',
     },
     {
       title: '工具库',
       img: 'https://nextui.org/images/hero-card.jpeg',
-      desc: '超级小工具',
+      desc: '效率与协作',
       link: '/tools',
     },
   ];
+
   return (
-    <section className="flex items-center justify-center h-screen w-screen">
-      <div className="w-5/6 h-4/6 gap-2 grid grid-cols-2 sm:grid-cols-4">
+    <section className="flex flex-col items-center justify-center h-screen w-screen overflow-hidden">
+      <div className="text-center mb-8">
+        <p className="text-5xl font-bold">Just for Fun</p>
+        <p className="text-xl text-[#666] mt-3">
+          In me the tiger sniffs the rose
+        </p>
+      </div>
+      <div className="w-5/6 gap-4 grid grid-cols-2 sm:grid-cols-4">
         {appList.map((item, index) => (
-          <Card
-            key={index}
-            isFooterBlurred
-            radius="lg"
-            className="border-none bg-gray-900"
-          >
-            <Image
-              alt="Woman listing to music"
-              className="object-cover"
-              height={200}
-              src={item.img}
-              width={200}
-            />
-            <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-              <p className="text-tiny text-white/80">{item.desc}</p>
-              <Link className="text-tiny text-white bg-black/20" to={item.link}>
-                详情
-              </Link>
-            </CardFooter>
-          </Card>
+          <Link key={index} to={item.link}>
+            <Card
+              shadow="sm"
+              isPressable
+              onPress={() => console.log('item pressed')}
+            >
+              <CardBody className="overflow-visible p-0">
+                <Image
+                  shadow="sm"
+                  radius="lg"
+                  width="100%"
+                  alt={item.title}
+                  className="w-full object-cover h-[140px]"
+                  src={item.img}
+                />
+              </CardBody>
+              <CardFooter className="text-small justify-between">
+                <b>{item.title}</b>
+                <p className="text-default-500">{item.desc}</p>
+              </CardFooter>
+            </Card>
+          </Link>
         ))}
       </div>
     </section>

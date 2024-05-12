@@ -73,7 +73,7 @@ const debouncedUpdateJson = debounce((value: unknown) => {
   useJson.getState().setJson(JSON.stringify(value, null, 2));
 }, 800);
 
-const filterArrayAndObjectFields = (obj: Record<string, any>) => {
+export const filterArrayAndObjectFields = (obj: Record<string, any>) => {
   const result: any = {};
 
   for (const key in obj) {
@@ -178,7 +178,7 @@ const useFile = create<FileStates & JsonActions>()((set, get) => ({
     if (format) set({ format });
     get().setContents({ contents, hasChanges: false });
   },
-  fetchFile: async (id) => {
+  fetchFile: async () => {
     try {
       // const { data, error } = await documentSvc.getById(id);
       const data: File[] = [];

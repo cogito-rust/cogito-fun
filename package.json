@@ -10,11 +10,12 @@
     "preview": "vite preview",
     "server:dev": "node scripts/watch-server.js",
     "server:build": "node scripts/build-server.js",
-    "build": "npm run server:build && npm run app:build",
+    "build": "npm run app:build",
     "dev": "run-p app:dev",
     "tauri": "tauri"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.13.10",
     "@fastify/cors": "^9.0.1",
     "@fujia/novel": "^0.3.1",
     "@langchain/community": "^0.0.55",
@@ -71,10 +72,10 @@
     "react-linkify-it": "^1.0.8",
     "react-zoomable-ui": "^0.11.0",
     "reaflow": "^5.2.8",
-    "rxdb": "^15.19.0",
     "rxjs": "^7.8.1",
     "styled-components": "^6.1.10",
     "toml": "^3.0.0",
+    "use-dark-mode": "^2.3.1",
     "use-long-press": "^3.2.0",
     "zod": "^3.23.7",
     "zustand": "^4.5.2"

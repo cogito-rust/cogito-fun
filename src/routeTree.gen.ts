@@ -23,14 +23,22 @@ import { Route as SettingsNotificationsImport } from './routes/settings/notifica
 
 // Create Virtual Routes
 
+const SandpackLazyImport = createFileRoute('/sandpack')()
 const LoginRegisterLazyImport = createFileRoute('/login-register')()
 const DatasourceLazyImport = createFileRoute('/datasource')()
 const DataCenterLazyImport = createFileRoute('/data-center')()
 const AiLazyImport = createFileRoute('/ai')()
 const IndexLazyImport = createFileRoute('/')()
 const ToolsJsonActionLazyImport = createFileRoute('/tools/json-action')()
+const SandpackReactLazyImport = createFileRoute('/sandpack/react')()
+const SandpackNodeLazyImport = createFileRoute('/sandpack/node')()
 const EditorNovelLazyImport = createFileRoute('/editor/novel')()
 const EditorMonacoLazyImport = createFileRoute('/editor/monaco')()
+const DatasourceSqliteLazyImport = createFileRoute('/datasource/sqlite')()
+const DatasourcePostgresqlLazyImport = createFileRoute(
+  '/datasource/postgresql',
+)()
+const DatasourceMysqlLazyImport = createFileRoute('/datasource/mysql')()
 const DataCenterRxdbLazyImport = createFileRoute('/data-center/rxdb')()
 const DataCenterRxdbDatabaseLazyImport = createFileRoute(
   '/data-center/rxdb/database',
@@ -40,6 +48,11 @@ const DataCenterRxdbCollectionsLazyImport = createFileRoute(
 )()
 
 // Create/Update Routes
+
+const SandpackLazyRoute = SandpackLazyImport.update({
+  path: '/sandpack',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/sandpack.lazy').then((d) => d.Route))
 
 const LoginRegisterLazyRoute = LoginRegisterLazyImport.update({
   path: '/login-register',
@@ -90,6 +103,18 @@ const ToolsJsonActionLazyRoute = ToolsJsonActionLazyImport.update({
   import('./routes/tools/json-action.lazy').then((d) => d.Route),
 )
 
+const SandpackReactLazyRoute = SandpackReactLazyImport.update({
+  path: '/react',
+  getParentRoute: () => SandpackLazyRoute,
+} as any).lazy(() =>
+  import('./routes/sandpack/react.lazy').then((d) => d.Route),
+)
+
+const SandpackNodeLazyRoute = SandpackNodeLazyImport.update({
+  path: '/node',
+  getParentRoute: () => SandpackLazyRoute,
+} as any).lazy(() => import('./routes/sandpack/node.lazy').then((d) => d.Route))
+
 const EditorNovelLazyRoute = EditorNovelLazyImport.update({
   path: '/novel',
   getParentRoute: () => EditorRoute,
@@ -99,6 +124,27 @@ const EditorMonacoLazyRoute = EditorMonacoLazyImport.update({
   path: '/monaco',
   getParentRoute: () => EditorRoute,
 } as any).lazy(() => import('./routes/editor/monaco.lazy').then((d) => d.Route))
+
+const DatasourceSqliteLazyRoute = DatasourceSqliteLazyImport.update({
+  path: '/sqlite',
+  getParentRoute: () => DatasourceLazyRoute,
+} as any).lazy(() =>
+  import('./routes/datasource/sqlite.lazy').then((d) => d.Route),
+)
+
+const DatasourcePostgresqlLazyRoute = DatasourcePostgresqlLazyImport.update({
+  path: '/postgresql',
+  getParentRoute: () => DatasourceLazyRoute,
+} as any).lazy(() =>
+  import('./routes/datasource/postgresql.lazy').then((d) => d.Route),
+)
+
+const DatasourceMysqlLazyRoute = DatasourceMysqlLazyImport.update({
+  path: '/mysql',
+  getParentRoute: () => DatasourceLazyRoute,
+} as any).lazy(() =>
+  import('./routes/datasource/mysql.lazy').then((d) => d.Route),
+)
 
 const DataCenterRxdbLazyRoute = DataCenterRxdbLazyImport.update({
   path: '/rxdb',
@@ -180,6 +226,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRegisterLazyImport
       parentRoute: typeof rootRoute
     }
+    '/sandpack': {
+      preLoaderRoute: typeof SandpackLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/settings/notifications': {
       preLoaderRoute: typeof SettingsNotificationsImport
       parentRoute: typeof SettingsImport
@@ -200,6 +250,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataCenterRxdbLazyImport
       parentRoute: typeof DataCenterLazyImport
     }
+    '/datasource/mysql': {
+      preLoaderRoute: typeof DatasourceMysqlLazyImport
+      parentRoute: typeof DatasourceLazyImport
+    }
+    '/datasource/postgresql': {
+      preLoaderRoute: typeof DatasourcePostgresqlLazyImport
+      parentRoute: typeof DatasourceLazyImport
+    }
+    '/datasource/sqlite': {
+      preLoaderRoute: typeof DatasourceSqliteLazyImport
+      parentRoute: typeof DatasourceLazyImport
+    }
     '/editor/monaco': {
       preLoaderRoute: typeof EditorMonacoLazyImport
       parentRoute: typeof EditorImport
@@ -207,6 +269,14 @@ declare module '@tanstack/react-router' {
     '/editor/novel': {
       preLoaderRoute: typeof EditorNovelLazyImport
       parentRoute: typeof EditorImport
+    }
+    '/sandpack/node': {
+      preLoaderRoute: typeof SandpackNodeLazyImport
+      parentRoute: typeof SandpackLazyImport
+    }
+    '/sandpack/react': {
+      preLoaderRoute: typeof SandpackReactLazyImport
+      parentRoute: typeof SandpackLazyImport
     }
     '/tools/json-action': {
       preLoaderRoute: typeof ToolsJsonActionLazyImport
@@ -242,8 +312,16 @@ export const routeTree = rootRoute.addChildren([
       DataCenterRxdbDatabaseLazyRoute,
     ]),
   ]),
-  DatasourceLazyRoute,
+  DatasourceLazyRoute.addChildren([
+    DatasourceMysqlLazyRoute,
+    DatasourcePostgresqlLazyRoute,
+    DatasourceSqliteLazyRoute,
+  ]),
   LoginRegisterLazyRoute,
+  SandpackLazyRoute.addChildren([
+    SandpackNodeLazyRoute,
+    SandpackReactLazyRoute,
+  ]),
 ])
 
 /* prettier-ignore-end */

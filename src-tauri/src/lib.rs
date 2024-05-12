@@ -6,6 +6,7 @@
 pub mod my_commands;
 
 use my_commands::file_commands::greet;
+// use my_commands::sys_commands::close_splashscreen;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {

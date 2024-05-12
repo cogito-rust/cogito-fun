@@ -32,7 +32,7 @@ export const ServiceConfigPage = () => {
           </Button>
           <Button onClick={handleWSDisconnect}>disconnect ws</Button>
           <ul>
-            {wsMsgList.map((msg, index) => (
+            {wsMsgList.map((msg) => (
               <li>{msg}</li>
             ))}
           </ul>
