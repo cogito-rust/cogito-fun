@@ -1,92 +1,71 @@
-import React, { Key } from 'react';
 import {
-  Tabs,
-  Tab,
   Input,
-  Link,
   Button,
   Card,
   CardBody,
   CardHeader,
+  Image,
+  Divider,
 } from '@nextui-org/react';
+import { useEffect } from 'react';
+import styled from 'styled-components';
 
-export default function LoginRegisterPage() {
-  const [selected, setSelected] = React.useState<React.Key>('login');
+import logoSvg from 'src/assets/logo.svg';
+import { appInit } from 'src/utils/app-initialize';
+
+export function LoginRegisterPage() {
+  useEffect(() => {
+    // appInit();
+  }, []);
 
   return (
-    <div className="flex flex-col w-full">
+    <LoginContainer>
       <Card className="max-w-full w-[340px] h-[400px]">
+        <CardHeader className="flex gap-3">
+          <Image
+            alt="cogito logo"
+            height={40}
+            radius="sm"
+            src={logoSvg}
+            width={40}
+          />
+          <div className="flex flex-col">
+            <p className="text-md">Cogito</p>
+            <p className="text-small text-default-500">JUST FOR FUN</p>
+          </div>
+        </CardHeader>
+        <Divider />
         <CardBody className="overflow-hidden">
-          <Tabs
-            fullWidth
-            size="md"
-            aria-label="Tabs form"
-            selectedKey={selected as string}
-            onSelectionChange={setSelected}
-          >
-            <Tab key="login" title="Login">
-              <form className="flex flex-col gap-4">
-                <Input
-                  isRequired
-                  label="Email"
-                  placeholder="Enter your email"
-                  type="email"
-                />
-                <Input
-                  isRequired
-                  label="Password"
-                  placeholder="Enter your password"
-                  type="password"
-                />
-                <p className="text-center text-small">
-                  Need to create an account?{' '}
-                  <Link size="sm" onPress={() => setSelected('sign-up')}>
-                    Sign up
-                  </Link>
-                </p>
-                <div className="flex gap-2 justify-end">
-                  <Button fullWidth color="primary">
-                    Login
-                  </Button>
-                </div>
-              </form>
-            </Tab>
-            <Tab key="sign-up" title="Sign up">
-              <form className="flex flex-col gap-4 h-[300px]">
-                <Input
-                  isRequired
-                  label="Name"
-                  placeholder="Enter your name"
-                  type="password"
-                />
-                <Input
-                  isRequired
-                  label="Email"
-                  placeholder="Enter your email"
-                  type="email"
-                />
-                <Input
-                  isRequired
-                  label="Password"
-                  placeholder="Enter your password"
-                  type="password"
-                />
-                <p className="text-center text-small">
-                  Already have an account?{' '}
-                  <Link size="sm" onPress={() => setSelected('login')}>
-                    登 录
-                  </Link>
-                </p>
-                <div className="flex gap-2 justify-end">
-                  <Button fullWidth color="primary">
-                    注 册
-                  </Button>
-                </div>
-              </form>
-            </Tab>
-          </Tabs>
+          <form className="flex flex-col gap-4">
+            <Input isRequired label="账号" placeholder="输入个人账号" />
+            <Input
+              isRequired
+              label="Password"
+              placeholder="输入用户密码"
+              type="password"
+            />
+            <div className="flex gap-2 justify-end">
+              <Button fullWidth color="primary">
+                登 录
+              </Button>
+            </div>
+          </form>
         </CardBody>
       </Card>
-    </div>
+    </LoginContainer>
   );
 }
+
+const LoginContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+`;

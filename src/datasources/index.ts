@@ -1,13 +1,4 @@
 import Database from '@tauri-apps/plugin-sql';
-import { nStore } from 'src/utils/store';
-
-export interface DataSourceInfo {
-  protocol: string;
-  host: string;
-  account: string;
-  password: string;
-  dbName: string;
-}
 
 export const dbInstance = new Map<string, Database>();
 

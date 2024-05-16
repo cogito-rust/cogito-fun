@@ -1,0 +1,1 @@
+export const INIT_STORE_SUCCESS = 'INIT_STORE_SUCCESS';

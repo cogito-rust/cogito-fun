@@ -22,33 +22,39 @@ export const HomePage = () => {
     },
     {
       title: '数据源',
-      img: 'https://nextui.org/images/fruit-3.jpeg',
+      img: 'https://nextui.org/images/fruit-4.jpeg',
       desc: '定义与连接',
       link: '/datasource',
     },
     {
       title: '配置中心',
-      img: 'https://nextui.org/images/fruit-3.jpeg',
+      img: 'https://nextui.org/images/fruit-5.jpeg',
       desc: '构建与管理',
       link: '/settings',
     },
     {
       title: '数据中心',
-      img: 'https://nextui.org/images/fruit-3.jpeg',
+      img: 'https://nextui.org/images/fruit-6.jpeg',
       desc: '编排与处理',
       link: '/data-center',
     },
     {
       title: 'Sandpack',
-      img: 'https://nextui.org/images/fruit-3.jpeg',
+      img: 'https://nextui.org/images/fruit-7.jpeg',
       desc: '实践与预览',
       link: '/sandpack',
     },
     {
       title: '工具库',
-      img: 'https://nextui.org/images/hero-card.jpeg',
+      img: 'https://nextui.org/images/fruit-8.jpeg',
       desc: '效率与协作',
       link: '/tools',
+    },
+    {
+      title: '监控中心',
+      img: 'https://nextui.org/images/fruit-2.jpeg',
+      desc: '安全与运营',
+      link: '/monitor',
     },
   ];
 

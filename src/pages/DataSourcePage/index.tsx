@@ -29,7 +29,7 @@ export const DataSourcePage = () => {
           onSelectionChange={setActiveDBType}
         >
           <Tab
-            key="SQLite"
+            key="sqlite"
             title={
               <div className="flex items-center space-x-2">
                 {/* <GalleryIcon/> */}
@@ -43,7 +43,7 @@ export const DataSourcePage = () => {
             <DatabaseList dbType={activeDBType as 'sqlite'} />
           </Tab>
           <Tab
-            key="MySQL"
+            key="mysql"
             title={
               <div className="flex items-center space-x-2">
                 {/* <MusicIcon/> */}
@@ -57,7 +57,7 @@ export const DataSourcePage = () => {
             <DatabaseList dbType={activeDBType as 'mysql'} />
           </Tab>
           <Tab
-            key="PostgreSQL"
+            key="postgresql"
             title={
               <div className="flex items-center space-x-2">
                 {/* <VideoIcon/> */}

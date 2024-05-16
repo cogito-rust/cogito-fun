@@ -6,7 +6,14 @@
     "main"
   ],
   "permissions": [
-    "path:default",
+    "path:allow-basename",
+    "path:allow-dirname",
+    "path:allow-extname",
+    "path:allow-is-absolute",
+    "path:allow-join",
+    "path:allow-normalize",
+    "path:allow-resolve",
+    "path:allow-resolve-directory",
     "event:default",
     "window:default",
     "app:default",
@@ -37,7 +44,7 @@
     "sql:allow-close",
     "sql:allow-execute",
     "sql:allow-load",
-    "sql:allow-execute",
+    "sql:allow-select",
     {
       "identifier": "shell:allow-execute",
       "allow": [
@@ -60,7 +67,8 @@
         }
       ]
     },
-    "fs:default",
+    "fs:read-all",
+    "fs:write-all",
     "os:default",
     "http:default",
     "http:default",
@@ -70,6 +78,7 @@
     "shell:allow-open",
     "shell:allow-stdin-write",
     "shell:allow-kill",
-    "websocket:default"
+    "websocket:default",
+    "log:default"
   ]
 }
