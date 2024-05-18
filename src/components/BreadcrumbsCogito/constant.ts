@@ -4,4 +4,5 @@ export const pathMapLocale: Record<string, any> = {
   '/data-center/rxdb': 'RxDB',
   '/data-center/rxdb/database': '数据库管理',
   '/datasource': '数据源',
+  '/datasrouce/sqlite': 'SQLite表详情',
 };

@@ -7,7 +7,7 @@ import { Empty } from 'src/components/Empty';
 import { DataTableList } from './DataTableList';
 
 export type StoreDBItem = {
-  type: SupportDBType;
+  protocol: SupportDBType;
   dbName: string;
   path: string;
   host?: string;
@@ -54,7 +54,7 @@ export const DatabaseList: FC<{
       <Tabs aria-label="Options" isVertical>
         {dbList.map((item) => (
           <Tab key={item.dbName} title={item.dataSourceName}>
-            <DataTableList dbName={item.dbName} protocol={item.type} />
+            <DataTableList dbName={item.dbName} protocol={item.protocol} />
           </Tab>
         ))}
       </Tabs>

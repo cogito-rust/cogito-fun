@@ -8,6 +8,8 @@ import {
 } from '@tauri-apps/plugin-fs';
 import { sysSqliteDB } from '../cogito-sql-actor/system-sqlite-db';
 import Database from '@tauri-apps/plugin-sql';
+import { nStore } from '../store';
+import { INIT_STORE_SUCCESS } from 'src/constants';
 
 export const appInit = async () => {
   try {
@@ -81,9 +83,7 @@ async function seed(db: Database) {
     const sqlText = await readTextFile('sqls/seed_sys.sql', {
       baseDir: BaseDirectory.Resource,
     });
-    const res = await db.execute(sqlText);
-
-    console.log('seed: ', res);
+    await db.execute(sqlText);
   } catch (e: any) {
     console.log('seed errors: ', e?.message || e);
   }

@@ -7,6 +7,7 @@ import {
   CardHeader,
   Divider,
 } from '@nextui-org/react';
+import { Link } from '@tanstack/react-router';
 import { FC, useEffect, useState } from 'react';
 import { Empty } from 'src/components/Empty';
 import { sysSqliteDB } from 'src/utils/cogito-sql-actor/system-sqlite-db';
@@ -49,8 +50,18 @@ export const DataTableList: FC<{
               <p className="text-sm text-slate-500">系统表，请谨慎操作</p>
             </CardBody>
             <CardFooter>
-              <ButtonGroup size="sm" fullWidth variant="light">
-                <Button color="primary">查看</Button>
+              <ButtonGroup size="sm" fullWidth variant="flat">
+                <Button color="primary">
+                  <Link
+                    to="/datasrouce/sqlite"
+                    search={{
+                      tableName: item.name,
+                      dbtype: protocol,
+                    }}
+                  >
+                    查看
+                  </Link>
+                </Button>
                 <Button color="default">部署</Button>
                 <Button color="danger">删除</Button>
               </ButtonGroup>

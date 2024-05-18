@@ -19,7 +19,7 @@ importers:
         version: 0.3.1(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@langchain/community':
         specifier: ^0.0.55
-        version: 0.0.55(openai@4.45.0)(ws@8.17.0)
+        version: 0.0.55(lodash@4.17.21)(openai@4.45.0)(ws@8.17.0)
       '@langchain/core':
         specifier: ^0.1.62
         version: 0.1.62(openai@4.45.0)
@@ -47,6 +47,9 @@ importers:
       '@nextui-org/react':
         specifier: ^2.3.6
         version: 2.3.6(@types/react@18.3.2)(framer-motion@11.1.9(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5))))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.11)(typescript@5.4.5)))
+      '@react-stately/data':
+        specifier: ^3.11.3
+        version: 3.11.3(react@18.3.1)
       '@tanstack/react-form':
         specifier: ^0.19.4
         version: 0.19.4(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -113,6 +116,9 @@ importers:
       cheerio:
         specifier: 1.0.0-rc.12
         version: 1.0.0-rc.12
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       dayjs:
         specifier: ^1.11.11
         version: 1.11.11
@@ -145,7 +151,10 @@ importers:
         version: 2.0.0-beta.5
       langchain:
         specifier: ^0.1.36
-        version: 0.1.37(axios@1.6.8)(cheerio@1.0.0-rc.12)(ignore@5.3.1)(openai@4.45.0)(puppeteer@22.8.0(typescript@5.4.5))(ws@8.17.0)
+        version: 0.1.37(axios@1.6.8)(cheerio@1.0.0-rc.12)(ignore@5.3.1)(lodash@4.17.21)(openai@4.45.0)(puppeteer@22.8.0(typescript@5.4.5))(ws@8.17.0)
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       lodash.debounce:
         specifier: ^4.0.8
         version: 4.0.8
@@ -188,12 +197,12 @@ importers:
       styled-components:
         specifier: ^6.1.10
         version: 6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tailwind-merge:
+        specifier: ^2.3.0
+        version: 2.3.0
       toml:
         specifier: ^3.0.0
         version: 3.0.0
-      use-dark-mode:
-        specifier: ^2.3.1
-        version: 2.3.1(react@18.3.1)
       use-long-press:
         specifier: ^3.2.0
         version: 3.2.0(react@18.3.1)
@@ -219,6 +228,9 @@ importers:
       '@types/jxon':
         specifier: ^2.0.5
         version: 2.0.5
+      '@types/lodash':
+        specifier: ^4.17.1
+        version: 4.17.1
       '@types/lodash.debounce':
         specifier: ^4.0.9
         version: 4.0.9
@@ -2156,6 +2168,11 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
+  '@react-stately/data@3.11.3':
+    resolution: {integrity: sha512-iyg27s3uUquxvX5AXckAgOPszG6uX7fCOIg0D/GJXxdFxLv1gFSupIeIJhM+kXufPgpaLiugaQxoYlO5y65shA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+
   '@react-stately/datepicker@3.9.3':
     resolution: {integrity: sha512-NjZ8uqxmKf7mGLNWSZsvm22xX46k+yo0QkPspONuorHFTf8qqCnp4i+bBpEpaVCwX5KVSRdjxJOk7XhvJF8q4w==}
     peerDependencies:
@@ -3029,11 +3046,6 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
-
-  '@use-it/event-listener@0.1.7':
-    resolution: {integrity: sha512-hgfExDzUU9uTRTPDCpw2s9jWTxcxmpJya3fK5ADpf5VDpSy8WYwY/kh28XE0tUcbsljeP8wfan48QvAQTSSa3Q==}
-    peerDependencies:
-      react: '>=16.8.0'
 
   '@vitejs/plugin-react@4.2.1':
     resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
@@ -4842,6 +4854,9 @@ packages:
   lodash.omit@4.5.0:
     resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
 
+  lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
   log-symbols@6.0.0:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
     engines: {node: '>=18'}
@@ -6360,11 +6375,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  use-dark-mode@2.3.1:
-    resolution: {integrity: sha512-hmcdJR96tTustRQdaQwe6jMrZHnmPqXBxgy4jaQ4gsfhwajsCpjECuq9prgDe9XxMx/f9r96o2/md6O4Lwhwjg==}
-    peerDependencies:
-      react: ^16.8.0
-
   use-isomorphic-layout-effect@1.1.2:
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
     peerDependencies:
@@ -6387,11 +6397,6 @@ packages:
     resolution: {integrity: sha512-uq5o2qFR1VRjHn8Of7Fl344/AGvgk7C5Mcb4aSb1ZRVp6PkgdXJJLdRrlSTJQVkkQcDuqFbFc3mDX4COg7mRTA==}
     peerDependencies:
       react: '>=16.8.0'
-
-  use-persisted-state@0.3.3:
-    resolution: {integrity: sha512-pCNlvYC8+XjRxwnIut4teGC9f2p9aD88R8OGseQGZa2dvqG/h1vEGk1vRE1IZG0Vf161UDpn+NlW4+UGubQflQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0
 
   use-resize-observer@9.1.0:
     resolution: {integrity: sha512-R25VqO9Wb3asSD4eqtcxk8sJalvIOYBqS8MNZlpDSQ4l4xMQxC/J7Id9HoTqPq8FwULIn0PVW+OAqF2dyYbjow==}
@@ -7324,7 +7329,7 @@ snapshots:
 
   '@juggle/resize-observer@3.4.0': {}
 
-  '@langchain/community@0.0.55(openai@4.45.0)(ws@8.17.0)':
+  '@langchain/community@0.0.55(lodash@4.17.21)(openai@4.45.0)(ws@8.17.0)':
     dependencies:
       '@langchain/core': 0.1.62(openai@4.45.0)
       '@langchain/openai': 0.0.28
@@ -7335,6 +7340,7 @@ snapshots:
       zod: 3.23.8
       zod-to-json-schema: 3.23.0(zod@3.23.8)
     optionalDependencies:
+      lodash: 4.17.21
       ws: 8.17.0
     transitivePeerDependencies:
       - encoding
@@ -9095,6 +9101,12 @@ snapshots:
       '@swc/helpers': 0.5.11
       react: 18.3.1
 
+  '@react-stately/data@3.11.3(react@18.3.1)':
+    dependencies:
+      '@react-types/shared': 3.23.0(react@18.3.1)
+      '@swc/helpers': 0.5.11
+      react: 18.3.1
+
   '@react-stately/datepicker@3.9.3(react@18.3.1)':
     dependencies:
       '@internationalized/date': 3.5.3
@@ -10051,10 +10063,6 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
-
-  '@use-it/event-listener@0.1.7(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
 
   '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.12.11))':
     dependencies:
@@ -11731,10 +11739,10 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  langchain@0.1.37(axios@1.6.8)(cheerio@1.0.0-rc.12)(ignore@5.3.1)(openai@4.45.0)(puppeteer@22.8.0(typescript@5.4.5))(ws@8.17.0):
+  langchain@0.1.37(axios@1.6.8)(cheerio@1.0.0-rc.12)(ignore@5.3.1)(lodash@4.17.21)(openai@4.45.0)(puppeteer@22.8.0(typescript@5.4.5))(ws@8.17.0):
     dependencies:
       '@anthropic-ai/sdk': 0.9.1
-      '@langchain/community': 0.0.55(openai@4.45.0)(ws@8.17.0)
+      '@langchain/community': 0.0.55(lodash@4.17.21)(openai@4.45.0)(ws@8.17.0)
       '@langchain/core': 0.1.62(openai@4.45.0)
       '@langchain/openai': 0.0.28
       '@langchain/textsplitters': 0.0.0(openai@4.45.0)
@@ -11893,6 +11901,8 @@ snapshots:
   lodash.merge@4.6.2: {}
 
   lodash.omit@4.5.0: {}
+
+  lodash@4.17.21: {}
 
   log-symbols@6.0.0:
     dependencies:
@@ -13795,12 +13805,6 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  use-dark-mode@2.3.1(react@18.3.1):
-    dependencies:
-      '@use-it/event-listener': 0.1.7(react@18.3.1)
-      react: 18.3.1
-      use-persisted-state: 0.3.3(react@18.3.1)
-
   use-isomorphic-layout-effect@1.1.2(@types/react@18.3.2)(react@18.3.1):
     dependencies:
       react: 18.3.1
@@ -13816,11 +13820,6 @@ snapshots:
 
   use-long-press@3.2.0(react@18.3.1):
     dependencies:
-      react: 18.3.1
-
-  use-persisted-state@0.3.3(react@18.3.1):
-    dependencies:
-      '@use-it/event-listener': 0.1.7(react@18.3.1)
       react: 18.3.1
 
   use-resize-observer@9.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):

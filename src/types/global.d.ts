@@ -18,6 +18,8 @@ interface StoreUserInfo {
   id: number;
   username: string;
   password: string;
+  roles: string[];
+  permissions: string[];
   lastLoginTime: number;
 }
 
