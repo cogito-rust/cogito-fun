@@ -9,22 +9,32 @@ import {
 } from '@nextui-org/react';
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { error } from '@tauri-apps/plugin-log';
+import { redirect, useNavigate } from '@tanstack/react-router';
+import { useSetAtom } from 'jotai';
+import _ from 'lodash';
 
 import logoSvg from 'src/assets/logo.svg';
 import { appInit } from 'src/utils/app-initialize';
 import { nStore } from 'src/utils/store';
-import { INIT_STORE_SUCCESS, SYS_SQLITE_TABLES } from 'src/constants';
-import { error } from '@tauri-apps/plugin-log';
+import {
+  INIT_STORE_SUCCESS,
+  SYS_SQLITE_TABLES,
+  USER_INFO_KEY,
+} from 'src/constants';
 import { sysSqliteDB } from 'src/utils/cogito-sql-actor/system-sqlite-db';
-import { notify } from 'src/utils/toaster';
+import { notify, successToast } from 'src/utils/toaster';
+import { userInfoAtom } from 'src/store/userInfoAtom';
 
 export function LoginPage() {
+  const setUserInfo = useSetAtom(userInfoAtom, {});
   const [initAppLoading, setInitAppLoading] = useState(false);
-  const [account, setAccount] = useState('');
-  const [pwd, setPwd] = useState('');
+  const [account, setAccount] = useState<string | undefined>(undefined);
+  const [pwd, setPwd] = useState<string | undefined>(undefined);
+  const navigate = useNavigate();
 
   const handleAppInitOnce = async () => {
-    await nStore.set(INIT_STORE_SUCCESS, true);
+    // await nStore.set(INIT_STORE_SUCCESS, true);
     const isFinishedInit = await nStore.get(INIT_STORE_SUCCESS);
 
     if (isFinishedInit) return;
@@ -43,6 +53,8 @@ export function LoginPage() {
   };
 
   const validLoginValue = useMemo(() => {
+    if (account === undefined || pwd === undefined) return false;
+
     if (!!account.trim() && pwd.trim().length >= 6) return true;
 
     return false;
@@ -53,7 +65,6 @@ export function LoginPage() {
   }, []);
 
   const handleLogin = async () => {
-    console.log(account, pwd);
     const result = await sysSqliteDB.select(SYS_SQLITE_TABLES.user, {
       username: account,
     });
@@ -65,27 +76,92 @@ export function LoginPage() {
 
       return;
     }
-    const { password } = user;
+    const { password, username } = user;
 
-    if (password !== pwd) {
-      notify('密码错误');
+    if (username !== account) {
+      notify('用户名不正确');
 
       return;
     }
 
-    console.log(result);
+    if (password !== pwd) {
+      notify('输入密码不正确');
+
+      return;
+    }
+
+    const { id } = user;
+
+    const roleRes =
+      (await sysSqliteDB.select(SYS_SQLITE_TABLES.user_roles, {
+        user_id: id,
+      })) || [];
+
+    // if (!roleRes?.length) return;
+
+    let roleList: any[] = [];
+    let rolePermissionsList: any[] = [];
+    let permissionsList: any[] = [];
+
+    for (const item of roleRes) {
+      const { role_id } = item;
+
+      roleList =
+        (await sysSqliteDB.select(SYS_SQLITE_TABLES.roles, {
+          id: role_id,
+        })) || [];
+
+      rolePermissionsList =
+        (await sysSqliteDB.select(SYS_SQLITE_TABLES.role_permissions, {
+          role_id,
+        })) || [];
+    }
+
+    for (const item of rolePermissionsList) {
+      const { permission_id } = item;
+
+      const myPermissions =
+        (await sysSqliteDB.select(SYS_SQLITE_TABLES.permissions, {
+          id: permission_id,
+        })) || [];
+
+      permissionsList = [...permissionsList, ...myPermissions];
+    }
+
+    // console.log('permissionsList', permissionsList);
+
+    const foramtRoles = _.map(roleList, 'name');
+    const foramtPermissions = _.map(permissionsList, 'code');
+    const retUser: StoreUserInfo = {
+      ...user,
+      roles: foramtRoles,
+      permissions: foramtPermissions,
+      lastLoginTime: new Date().getTime(),
+    };
+
+    setUserInfo(retUser);
+    successToast('登录成功');
+    await nStore.set(USER_INFO_KEY, retUser);
+    navigate({
+      to: '/',
+      replace: true,
+    });
   };
 
   const isAccountInvalid = useMemo(() => {
-    if (account.trim() === '') return true;
+    if (account === undefined) return 'default';
 
-    return false;
+    if (account.trim() === '') return 'danger';
+
+    return 'success';
   }, [account]);
 
   const isPwdInvalid = useMemo(() => {
-    if (pwd.trim().length < 6) return true;
+    if (pwd === undefined) return 'default';
 
-    return false;
+    if (pwd.trim().length < 6) return 'danger';
+
+    return 'success';
   }, [pwd]);
 
   return (
@@ -111,9 +187,10 @@ export function LoginPage() {
               isRequired
               label="账号"
               autoComplete="off"
+              autoCapitalize="off"
               placeholder="输入个人账号"
-              isClearable
-              color={isAccountInvalid ? 'danger' : 'success'}
+              // isClearable
+              color={isAccountInvalid}
               errorMessage={isAccountInvalid && '账号不能为空'}
               onValueChange={setAccount}
             />
@@ -124,7 +201,9 @@ export function LoginPage() {
               onValueChange={setPwd}
               placeholder="输入用户密码"
               type="password"
-              color={isPwdInvalid ? 'danger' : 'success'}
+              autoComplete="off"
+              autoCapitalize="off"
+              color={isPwdInvalid}
               errorMessage={isPwdInvalid && '登录密码不能少于6个字符'}
               isClearable
             />

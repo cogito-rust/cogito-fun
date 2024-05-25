@@ -1,0 +1,354 @@
+[
+  {
+    "title": "基本信息",
+    "key": "profile",
+    "items": [
+      {
+        "key": 1690367741449,
+        "renderType": "cascader",
+        "label": "城市",
+        "field": "QO9m_ZJRzp",
+        "allowClear": true,
+        "required": true,
+        "disabled": false,
+        "placeholder": "请选择城市",
+        "initialValue": [
+          "shanghai",
+          "shanghaishi",
+          "huangpu"
+        ],
+        "maxTagCount": 5,
+        "options": [
+          {
+            "value": "beijing",
+            "label": "Beijing",
+            "children": [
+              {
+                "value": "Beijing",
+                "label": "Beijing",
+                "children": [
+                  {
+                    "value": "chaoyang",
+                    "label": "Chaoyang",
+                    "children": [
+                      {
+                        "value": "datunli",
+                        "label": "Datunli"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "value": "shanghai",
+            "label": "Shanghai",
+            "children": [
+              {
+                "value": "shanghaishi",
+                "label": "Shanghai",
+                "children": [
+                  {
+                    "value": "huangpu",
+                    "label": "Huangpu"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": 1690367741450,
+        "renderType": "checkbox",
+        "label": "是否成年",
+        "field": "yqAg_NoFHQ",
+        "initialValue": true,
+        "defaultChecked": true,
+        "disabled": false
+      },
+      {
+        "key": 169036774144430,
+        "renderType": "checkboxGroup",
+        "label": "紧急联系人",
+        "field": "yqAg-NoFHQ",
+        "initialValue": [
+          "1",
+          "2"
+        ],
+        "disabled": false,
+        "options": [
+          {
+            "label": "Option 1",
+            "value": "1"
+          },
+          {
+            "label": "Option 2",
+            "value": "2",
+            "disabled": true
+          },
+          {
+            "label": "Option 3",
+            "value": "3"
+          },
+          {
+            "label": "Option 4",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "key": 1690367741450097671,
+        "renderType": "datePicker",
+        "label": "就诊时间",
+        "field": "aj9tvU3ZAO"
+      },
+      {
+        "key": 1690367722871,
+        "renderType": "timePicker",
+        "label": "时间选择器",
+        "field": "aj9tvU000l"
+      },
+      {
+        "key": 169036774188544,
+        "renderType": "monthPicker",
+        "label": "月份选择器",
+        "field": "aj9t666000l"
+      },
+      {
+        "key": 169036690941451,
+        "renderType": "quarterPicker",
+        "label": "季度选择器",
+        "field": "aj92226000l"
+      },
+      {
+        "key": 1690367741451333,
+        "renderType": "weekPicker",
+        "label": "星期选择器",
+        "field": "aj222226000l"
+      },
+      {
+        "key": 169036774145177,
+        "renderType": "rangePicker",
+        "label": "时间范围",
+        "field": "ajljunhh00l444"
+      },
+      {
+        "key": 169030983845177,
+        "renderType": "yearPicker",
+        "label": "年份选择器",
+        "field": "ajljunhh00l"
+      },
+      {
+        "key": 1690367741452,
+        "renderType": "input",
+        "label": "患者姓名",
+        "field": "a0xdJXv3U6",
+        "allowClear": true,
+        "initialValue": "fujia",
+        "required": true,
+        "rules": [
+          {
+            "maxLength": 5,
+            "message": "姓名长度不能超过3个字符"
+          }
+        ]
+      },
+      {
+        "key": 169036774145266777,
+        "renderType": "inputNumber",
+        "label": "患者年龄",
+        "field": "a0xdJXv3U65555",
+        "allowClear": true,
+        "required": true,
+        "rules": [
+          {
+            "max": 150,
+            "message": "年龄不合法"
+          }
+        ]
+      },
+      {
+        "key": 16903645678444544,
+        "renderType": "inputTag",
+        "label": "患者标签",
+        "field": "a0xdfgsdg5",
+        "allowClear": true,
+        "required": true
+      },
+      {
+        "key": 1690367741453,
+        "renderType": "textArea",
+        "label": "过往病史",
+        "field": "2RAsV5Mn5A",
+        "autoSize": true,
+        "maxLength": 7
+      },
+      {
+        "key": 1690367741454,
+        "renderType": "radio",
+        "label": "是否复诊",
+        "field": "EM4MvuSrHL",
+        "initialValue": true,
+        "defaultChecked": true
+      },
+      {
+        "key": 169036774145490656,
+        "renderType": "radioGroup",
+        "label": "陪同亲属",
+        "field": "kinsfolk",
+        "initialValue": "couple",
+        "options": [
+          {
+            "label": "夫妻",
+            "value": "couple"
+          },
+          {
+            "label": "父子",
+            "value": "fatherAndSon"
+          },
+          {
+            "label": "朋友",
+            "value": "friend",
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "key": 1690367741455,
+        "renderType": "rate",
+        "label": "紧急程度",
+        "field": "gHMMmhy3j8",
+        "allowClear": true,
+        "allowHalf": true,
+        "count": 10,
+        "relatives": {
+          "type": "hideOrDisplay",
+          "lists": [
+            {
+              "field": "kinsfolk",
+              "value": "fatherAndSon"
+            }
+          ]
+        }
+      },
+      {
+        "key": 1690367741446,
+        "label": "质控医生",
+        "field": "heBOT_W-kL",
+        "initialValue": "degree",
+        "renderType": "select",
+        "required": true,
+        "options": [
+          {
+            "label": "姓名",
+            "value": "name"
+          },
+          {
+            "label": "性别",
+            "value": "gender"
+          },
+          {
+            "label": "学位",
+            "value": "degree"
+          }
+        ]
+      },
+      {
+        "key": 1690097967866,
+        "renderType": "input",
+        "label": "紧急程度2",
+        "field": "gHM99ljunh",
+        "allowClear": true,
+        "relatives": {
+          "type": "fieldMap",
+          "maps": {
+            "dependentField": "heBOT_W-kL",
+            "pairs": {
+              "name": "map_name",
+              "gender": "map_gender",
+              "degree": "map_degree"
+            }
+          }
+        }
+      },
+      {
+        "key": 1690367741456,
+        "renderType": "slider",
+        "label": "健康评分",
+        "field": "Fuygh_sChA",
+        "initialValue": 60,
+        "max": 100,
+        "min": 0,
+        "step": 5
+      },
+      {
+        "renderType": "switch",
+        "label": "是否医保",
+        "field": "xryGE6LOrO",
+        "type": "line",
+        "initialValue": true,
+        "defaultChecked": true,
+        "switchSize": "default",
+        "checkedText": "No",
+        "uncheckedText": "Off"
+      },
+      {
+        "renderType": "timeRangePicker",
+        "label": "预约时间",
+        "field": "7546325"
+      },
+      {
+        "key": 1690367741458,
+        "renderType": "treeSelect",
+        "label": "科室",
+        "field": "O94oRY8teq",
+        "treeData": [
+          {
+            "title": "外科",
+            "key": "chirurgery",
+            "value": "chirurgery",
+            "children": [
+              {
+                "title": "普通外科",
+                "key": "normal",
+                "value": "normal"
+              }
+            ]
+          },
+          {
+            "title": "儿科",
+            "key": "pediatric",
+            "value": "pediatric",
+            "children": [
+              {
+                "title": "儿科综合",
+                "key": "synthesis",
+                "value": "synthesis",
+                "children": [
+                  {
+                    "title": "新生儿科",
+                    "key": "neonatology",
+                    "value": "neonatology"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": 16903677419987551,
+        "renderType": "upload",
+        "label": "上传病历",
+        "field": "xryGE6LOrOu",
+        "drag": true,
+        "multiple": true,
+        "accept": "",
+        "listType": "text",
+        "tip": "上传提示"
+      }
+    ]
+  }
+]

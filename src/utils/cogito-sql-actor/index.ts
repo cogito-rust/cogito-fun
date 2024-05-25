@@ -160,7 +160,20 @@ class CogitoSQLActor {
     }
   }
 
-  async dropTable() {}
+  async dropTable(tableName: string) {
+    if (!this.db) return;
+
+    try {
+      const res = await this.db.execute(`DROP TABLE IF EXISTS ${tableName}`);
+
+      console.log('dropTable', res);
+
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
 
   async addColumn() {}
   /*
@@ -204,11 +217,19 @@ class CogitoSQLActor {
     if (!this.db) return [];
 
     const queryArr = _.toPairs(condition)[0];
-    console.log('queryArr', queryArr);
+    // console.log(
+    //   queryArr,
+    //   'exec sql: ',
+    //   `SELECT * from ${tableName} WHERE ${queryArr[0]} = $1`,
+    //   `[${queryArr[1]}]`
+    // );
+
     const result: Record<string, unknown>[] = await this.db.select(
       `SELECT * from ${tableName} WHERE ${queryArr[0]} = $1`,
       [queryArr[1]]
     );
+
+    console.log(tableName, '->', result);
 
     return result;
   }

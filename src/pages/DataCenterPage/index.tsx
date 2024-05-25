@@ -1,15 +1,31 @@
 import { Link, Outlet } from '@tanstack/react-router';
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+} from '@nextui-org/react';
 
 export const DataCenterPage = () => {
   return (
-    <div>
+    <section className="w-full min-h-screen">
       <header>
-        <nav>
-          <Link to="/data-center/rxdb">RxDB</Link>
-        </nav>
+        <Navbar>
+          <NavbarBrand>
+            {/* <AcmeLogo /> */}
+            <p className="font-bold text-inherit">COGITO</p>
+          </NavbarBrand>
+          <NavbarContent className="hidden sm:flex gap-4" justify="center">
+            <NavbarItem>
+              <Link color="foreground" to="/data-center/sql-editor">
+                SQL Editor
+              </Link>
+            </NavbarItem>
+          </NavbarContent>
+        </Navbar>
       </header>
-      {/* 添加其他数据中心的组件 */}
+      {/* Add your content here */}
       <Outlet />
-    </div>
+    </section>
   );
 };

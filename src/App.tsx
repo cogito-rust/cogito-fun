@@ -1,10 +1,11 @@
 import { Outlet } from '@tanstack/react-router';
-import { Button, NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider } from '@nextui-org/react';
 import { queryClient } from 'src/utils/queryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import '@arco-design/web-react/dist/css/arco.css';
 
 import { trpc } from 'utils/trpc';
 

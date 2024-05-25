@@ -21,6 +21,11 @@ import { Route as DatasourceImport } from './routes/datasource'
 import { Route as DataCenterImport } from './routes/data-center'
 import { Route as AiImport } from './routes/ai'
 import { Route as IndexImport } from './routes/index'
+import { Route as ToolsIndexImport } from './routes/tools/index'
+import { Route as WindowJsonactioneditorImport } from './routes/window.jsonactioneditor'
+import { Route as WindowDataformviewImport } from './routes/window.dataformview'
+import { Route as ToolsYjsImport } from './routes/tools/yjs'
+import { Route as ToolsPeerImport } from './routes/tools/peer'
 import { Route as ToolsJsonActionImport } from './routes/tools/json-action'
 import { Route as SettingsSystemImport } from './routes/settings/system'
 import { Route as SettingsServiceConfigImport } from './routes/settings/service-config'
@@ -35,7 +40,10 @@ import { Route as EditorMonacoImport } from './routes/editor/monaco'
 import { Route as DatasrouceSqliteImport } from './routes/datasrouce.sqlite'
 import { Route as DatasourcePostgresqlImport } from './routes/datasource/postgresql'
 import { Route as DatasourceMysqlImport } from './routes/datasource/mysql'
+import { Route as DataCenterSqlEditorImport } from './routes/data-center/sql-editor'
 import { Route as DataCenterRxdbImport } from './routes/data-center/rxdb'
+import { Route as ToolsPeerSenderImport } from './routes/tools/peer/sender'
+import { Route as ToolsPeerReceiverImport } from './routes/tools/peer/receiver'
 import { Route as DataCenterRxdbDatabaseImport } from './routes/data-center/rxdb/database'
 import { Route as DataCenterRxdbCollectionsImport } from './routes/data-center/rxdb/collections'
 
@@ -89,6 +97,31 @@ const AiRoute = AiImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const ToolsIndexRoute = ToolsIndexImport.update({
+  path: '/',
+  getParentRoute: () => ToolsRoute,
+} as any)
+
+const WindowJsonactioneditorRoute = WindowJsonactioneditorImport.update({
+  path: '/window/jsonactioneditor',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WindowDataformviewRoute = WindowDataformviewImport.update({
+  path: '/window/dataformview',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ToolsYjsRoute = ToolsYjsImport.update({
+  path: '/yjs',
+  getParentRoute: () => ToolsRoute,
+} as any)
+
+const ToolsPeerRoute = ToolsPeerImport.update({
+  path: '/peer',
+  getParentRoute: () => ToolsRoute,
 } as any)
 
 const ToolsJsonActionRoute = ToolsJsonActionImport.update({
@@ -161,9 +194,24 @@ const DatasourceMysqlRoute = DatasourceMysqlImport.update({
   getParentRoute: () => DatasourceRoute,
 } as any)
 
+const DataCenterSqlEditorRoute = DataCenterSqlEditorImport.update({
+  path: '/sql-editor',
+  getParentRoute: () => DataCenterRoute,
+} as any)
+
 const DataCenterRxdbRoute = DataCenterRxdbImport.update({
   path: '/rxdb',
   getParentRoute: () => DataCenterRoute,
+} as any)
+
+const ToolsPeerSenderRoute = ToolsPeerSenderImport.update({
+  path: '/sender',
+  getParentRoute: () => ToolsPeerRoute,
+} as any)
+
+const ToolsPeerReceiverRoute = ToolsPeerReceiverImport.update({
+  path: '/receiver',
+  getParentRoute: () => ToolsPeerRoute,
 } as any)
 
 const DataCenterRxdbDatabaseRoute = DataCenterRxdbDatabaseImport.update({
@@ -224,6 +272,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataCenterRxdbImport
       parentRoute: typeof DataCenterImport
     }
+    '/data-center/sql-editor': {
+      preLoaderRoute: typeof DataCenterSqlEditorImport
+      parentRoute: typeof DataCenterImport
+    }
     '/datasource/mysql': {
       preLoaderRoute: typeof DatasourceMysqlImport
       parentRoute: typeof DatasourceImport
@@ -280,6 +332,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsJsonActionImport
       parentRoute: typeof ToolsImport
     }
+    '/tools/peer': {
+      preLoaderRoute: typeof ToolsPeerImport
+      parentRoute: typeof ToolsImport
+    }
+    '/tools/yjs': {
+      preLoaderRoute: typeof ToolsYjsImport
+      parentRoute: typeof ToolsImport
+    }
+    '/window/dataformview': {
+      preLoaderRoute: typeof WindowDataformviewImport
+      parentRoute: typeof rootRoute
+    }
+    '/window/jsonactioneditor': {
+      preLoaderRoute: typeof WindowJsonactioneditorImport
+      parentRoute: typeof rootRoute
+    }
+    '/tools/': {
+      preLoaderRoute: typeof ToolsIndexImport
+      parentRoute: typeof ToolsImport
+    }
     '/data-center/rxdb/collections': {
       preLoaderRoute: typeof DataCenterRxdbCollectionsImport
       parentRoute: typeof DataCenterRxdbImport
@@ -287,6 +359,14 @@ declare module '@tanstack/react-router' {
     '/data-center/rxdb/database': {
       preLoaderRoute: typeof DataCenterRxdbDatabaseImport
       parentRoute: typeof DataCenterRxdbImport
+    }
+    '/tools/peer/receiver': {
+      preLoaderRoute: typeof ToolsPeerReceiverImport
+      parentRoute: typeof ToolsPeerImport
+    }
+    '/tools/peer/sender': {
+      preLoaderRoute: typeof ToolsPeerSenderImport
+      parentRoute: typeof ToolsPeerImport
     }
   }
 }
@@ -301,6 +381,7 @@ export const routeTree = rootRoute.addChildren([
       DataCenterRxdbCollectionsRoute,
       DataCenterRxdbDatabaseRoute,
     ]),
+    DataCenterSqlEditorRoute,
   ]),
   DatasourceRoute.addChildren([
     DatasourceMysqlRoute,
@@ -316,8 +397,15 @@ export const routeTree = rootRoute.addChildren([
     SettingsServiceConfigRoute,
     SettingsSystemRoute,
   ]),
-  ToolsRoute.addChildren([ToolsJsonActionRoute]),
+  ToolsRoute.addChildren([
+    ToolsJsonActionRoute,
+    ToolsPeerRoute.addChildren([ToolsPeerReceiverRoute, ToolsPeerSenderRoute]),
+    ToolsYjsRoute,
+    ToolsIndexRoute,
+  ]),
   DatasrouceSqliteRoute,
+  WindowDataformviewRoute,
+  WindowJsonactioneditorRoute,
 ])
 
 /* prettier-ignore-end */

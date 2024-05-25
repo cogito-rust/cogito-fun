@@ -1,73 +1,24 @@
-import { atom, useAtom } from 'jotai';
-import { Button, Card, CardBody, CardFooter, Image } from '@nextui-org/react';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Avatar, Card, CardBody, CardFooter, Image } from '@nextui-org/react';
+import { Link } from '@tanstack/react-router';
 
-const countAtom = atom(0);
+import { DEFAULT_APP_LIST, Container } from './constants';
 
 export const HomePage = () => {
-  // const navigate = useNavigate();
-
-  const appList = [
-    {
-      title: 'AI中心',
-      img: 'https://nextui.org/images/fruit-1.jpeg',
-      desc: '智能与创造',
-      link: '/ai',
-    },
-    {
-      title: '编辑器',
-      img: 'https://nextui.org/images/fruit-3.jpeg',
-      desc: '编码与专注',
-      link: '/editor',
-    },
-    {
-      title: '数据源',
-      img: 'https://nextui.org/images/fruit-4.jpeg',
-      desc: '定义与连接',
-      link: '/datasource',
-    },
-    {
-      title: '配置中心',
-      img: 'https://nextui.org/images/fruit-5.jpeg',
-      desc: '构建与管理',
-      link: '/settings',
-    },
-    {
-      title: '数据中心',
-      img: 'https://nextui.org/images/fruit-6.jpeg',
-      desc: '编排与处理',
-      link: '/data-center',
-    },
-    {
-      title: 'Sandpack',
-      img: 'https://nextui.org/images/fruit-7.jpeg',
-      desc: '实践与预览',
-      link: '/sandpack',
-    },
-    {
-      title: '工具库',
-      img: 'https://nextui.org/images/fruit-8.jpeg',
-      desc: '效率与协作',
-      link: '/tools',
-    },
-    {
-      title: '监控中心',
-      img: 'https://nextui.org/images/fruit-2.jpeg',
-      desc: '安全与运营',
-      link: '/monitor',
-    },
-  ];
-
   return (
-    <section className="flex flex-col items-center justify-center h-screen w-screen overflow-hidden">
+    <Container>
       <div className="text-center mb-8">
+        <div className="absolute right-4 top-2">
+          <Link to="/settings/profile">
+            <Avatar name="User" showFallback src="" />
+          </Link>
+        </div>
         <p className="text-5xl font-bold">Just for Fun</p>
         <p className="text-xl text-[#666] mt-3">
           In me the tiger sniffs the rose
         </p>
       </div>
       <div className="w-5/6 gap-4 grid grid-cols-2 sm:grid-cols-4">
-        {appList.map((item, index) => (
+        {DEFAULT_APP_LIST.map((item, index) => (
           <Link key={index} to={item.link}>
             <Card
               shadow="sm"
@@ -92,6 +43,6 @@ export const HomePage = () => {
           </Link>
         ))}
       </div>
-    </section>
+    </Container>
   );
 };

@@ -161,8 +161,9 @@ const StyledEditorWrapper = styled.div<{
 }>`
   position: absolute;
   width: 100%;
-  height: ${({ $widget }) =>
-    $widget ? 'calc(100vh - 40px)' : 'calc(100vh - 67px)'};
+  height: 100vh;
+  /* height: ${({ $widget }) =>
+    $widget ? 'calc(100vh - 40px)' : 'calc(100vh - 67px)'}; */
 
   --bg-color: ${({ theme }) => theme.GRID_BG_COLOR};
   --line-color-1: ${({ theme }) => theme.GRID_COLOR_PRIMARY};

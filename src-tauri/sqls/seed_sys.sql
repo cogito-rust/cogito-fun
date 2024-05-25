@@ -39,27 +39,27 @@ INSERT INTO permissions(id, code, description)
 VALUES (4, "app:tools:JsonActor", "manage JsonActor tool application");
 
 -- user_roles data
-INSERT INTO user_roles(user_id, role_id)
-VALUES (1, 1);
+INSERT INTO user_roles(id, user_id, role_id)
+VALUES (1, 1, 1);
 
-INSERT INTO user_roles(user_id, role_id)
-VALUES (2, 2);
+INSERT INTO user_roles(id, user_id, role_id)
+VALUES (2, 2, 2);
 
-INSERT INTO user_roles(user_id, role_id)
-VALUES (3, 3);
+INSERT INTO user_roles(id, user_id, role_id)
+VALUES (3, 3, 3);
 
-INSERT INTO user_roles(user_id, role_id)
-VALUES (4, 4);
+INSERT INTO user_roles(id, user_id, role_id)
+VALUES (4, 4, 4);
 
 -- role_permissions data
-INSERT INTO role_permissions(role_id, permission_id)
-VALUES (1, 1);
+INSERT INTO role_permissions(id, role_id, permission_id)
+VALUES (1, 1, 1);
 
-INSERT INTO role_permissions(role_id, permission_id)
-VALUES (1, 2);
+INSERT INTO role_permissions(id, role_id, permission_id)
+VALUES (2, 1, 2);
 
-INSERT INTO role_permissions(role_id, permission_id)
-VALUES (3, 3);
+INSERT INTO role_permissions(id, role_id, permission_id)
+VALUES (3, 3, 3);
 
-INSERT INTO role_permissions(role_id, permission_id)
-VALUES (4, 4);
+INSERT INTO role_permissions(id, role_id, permission_id)
+VALUES (4, 4, 4);

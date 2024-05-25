@@ -5,6 +5,8 @@ use tauri::{Manager, Window};
 
 mod axum_server;
 
+pub mod system_info;
+
 // Create the command:
 // This command must be async so that it doesn't run on the main thread.
 #[tauri::command]

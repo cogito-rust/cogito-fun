@@ -10,6 +10,9 @@
     "windows"
   ],
   "permissions": [
+    "webview:allow-create-webview",
+    "webview:allow-create-webview-window",
+    "webview:allow-internal-toggle-devtools",
     "fs:scope-app",
     "fs:scope-app-index",
     "fs:scope-app-recursive",

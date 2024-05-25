@@ -15,6 +15,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@arco-design/web-react": "^2.62.1",
     "@codesandbox/sandpack-react": "^2.13.10",
     "@fastify/cors": "^9.0.1",
     "@fujia/novel": "^0.3.1",
@@ -51,6 +52,7 @@
     "async-call-rpc": "^6.4.2",
     "axios": "^1.6.8",
     "cheerio": "1.0.0-rc.12",
+    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",
     "fastify": "^4.27.0",
@@ -66,6 +68,8 @@
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.378.0",
+    "nanoid": "^5.0.7",
+    "peerjs": "^1.5.4",
     "prisma": "^5.13.0",
     "puppeteer": "^22.8.0",
     "react": "^18.2.0",
@@ -81,6 +85,9 @@
     "tailwind-merge": "^2.3.0",
     "toml": "^3.0.0",
     "use-long-press": "^3.2.0",
+    "y-indexeddb": "^9.0.12",
+    "y-webrtc": "^10.3.0",
+    "yjs": "^13.6.15",
     "zod": "^3.23.7",
     "zustand": "^4.5.2"
   },

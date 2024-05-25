@@ -1,4 +1,3 @@
-use tauri_plugin_fs::FsExt;
 use tauri_plugin_log::{Target, TargetKind};
 
 pub mod my_commands;
@@ -12,6 +11,7 @@ use my_commands::sys_commands::{
   query_window_process_via_port,
   // close_splashscreen,
   run_axum_server,
+  system_info::{query_sys_memory, query_sys_profile, query_system_all_info},
 };
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -43,6 +43,9 @@ pub fn run() {
       query_lan_ip,
       query_unix_process_via_port,
       query_window_process_via_port,
+      query_sys_memory,
+      query_sys_profile,
+      query_system_all_info
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

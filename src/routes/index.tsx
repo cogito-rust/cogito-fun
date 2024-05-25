@@ -11,10 +11,10 @@ export const Route = createFileRoute('/')({
     let isAuthenticated = false;
 
     const date_time = new Date().getTime();
-
+    console.log('user', user);
     if (user) {
       const { lastLoginTime } = user;
-      const noExpired = lastLoginTime + LOGIN_EXPIRE_TIME_MS <= date_time;
+      const noExpired = date_time - lastLoginTime <= LOGIN_EXPIRE_TIME_MS;
 
       if (noExpired) {
         isAuthenticated = true;

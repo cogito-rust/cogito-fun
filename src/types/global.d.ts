@@ -4,6 +4,8 @@ interface Window {
 
 type SupportDBType = 'sqlite' | 'mysql' | 'postgresql';
 
+type SVGIconProps = React.SVGProps<SVGSVGElement> & { size?: number };
+
 interface DataSourceInfo {
   protocol: SupportDBType;
   host?: string;

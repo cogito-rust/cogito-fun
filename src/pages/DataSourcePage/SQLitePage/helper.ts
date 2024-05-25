@@ -30,6 +30,8 @@ export const genColumnsViaData = (
     };
   }
 ): { column: NextjsUITableColumn[]; columnKeys: string[] } => {
+  if (!data) return { column: [], columnKeys: [] };
+
   const columnKeys: string[] = [];
   const column = Object.keys(data).map((key) => {
     columnKeys.push(key);
